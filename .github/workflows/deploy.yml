@@ -1,32 +1,44 @@
-# name: deploy myblog
+name: deploy myblog
 
-# on:
-#   push:
-#     branches:
-#       - 'main' # 当文件在main主分支的时候触发 git push
-#     paths: #条件： 当下面文件改变了，触发git push 可以继续加。。。满足这些条件后，再执行下面命令jobs 
-#       - '.github/workflows/*'
-#       - 'src/**'
-#       - 'bin/*'
-#       - 'package.json'
+on:
+  push:
+    branches:
+      - 'main' # 当文件在main主分支的时候触发 git push
+    paths: #条件： 当下面文件改变了，触发git push 可以继续加。。。满足这些条件后，再执行下面命令jobs 
+      - '.github/workflows/*'
+      - 'src/**'
+      - 'bin/*'
+      - 'package.json'
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest 
 
-#     steps:
-#       - uses: actions/checkout@v2 #第三方的action
+    steps:
+      - uses: actions/checkout@v2 #第三方的action
       
-#       - name: set id_rsa # 设置id_rsa # -p的意思是连续创建多层文件夹
-#         run: |
-#           mkdir -p ~/.ssh/  
-#           echo "${{secrets.MY_ID_RSA}}" > ~/.ssh/id_rsa
-#           chmod 600 ~/.ssh/id_rsa
-#           ssk-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
+      - name: set id_rsa # 设置id_rsa # -p的意思是连续创建多层文件夹
+        run: |
+          mkdir -p ~/.ssh/  
+          echo "${{secrets.MY_ID_RSA}}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssk-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
 
-#       - name: deploy # 自动发布
-#         run: |
-#           ssh root@125.65.79.116 "
-#             # 注意：服务器已经 git clone 代码到 /root/myblog/imooc-320-server目录中
-#           "
+      # 注意：服务器已经 git clone 代码到 /root/myblog/imooc-320-server目录中
+      # git checkout . ;意思是万一有什么修改，就撤销，不然影响拉代码
+      # git pull origin main;重新下载最新代码
+      # 然后 重启服务 npm install
+      # npm run prd; 最后启动服务
+      # npm install;
+      # npm run prd;
+      - name: deploy # 自动发布
+        run: |
+          ssh root@125.65.79.116 "
+            cd /root/myblog/imooc-320-server;
+            git checkout . ;
+            git checkout main;
+            git pull origin main;
+          "
+      - name: delete id_rsa # 删除id_rsa
+        run: rm -rf ~/.ssh/id_rsa
 
