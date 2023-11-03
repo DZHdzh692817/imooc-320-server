@@ -3,8 +3,8 @@ name: deploy myblog
 on:
   push:
     branches:
-      - 'main' # 当文件在main主分支的时候触发 git push
-    paths: #条件： 当下面文件改变了，触发git push 可以继续加。。。满足这些条件后，再执行下面命令jobs 
+      - 'main' # 针对 main 分支
+    paths:
       - '.github/workflows/*'
       - 'src/**'
       - 'bin/*'
@@ -12,39 +12,32 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2 #第三方的action
+      - uses: actions/checkout@v2 # 第三的 action
 
-      - name: ssh is exist
-        run: mkdir -p ~/.ssh/
-
-      - name: Set id_rsa Key
-        run: echo "${{secrets.MY_id_RSA}}" > ~/.ssh/id_rsa
-
-      - name: Set Permissions for id_rsa
-        run: chmod 777 ~/.ssh/id_rsa
-
-      - name: set known_hosts
+      - name: set id_rsa # 设置 id_rsa
         run: |
-          touch ~/.ssh/known_hosts
-          chmod 777 ~/.ssh/known_hosts
-      
-      - name: Run ssh-keyscan
-        run: |
+          mkdir -p ~/.ssh/
+          echo "${{secrets.MY_ID_RSA}}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
           ssh-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
-        #  chmod 777 ~/.ssh/known_hosts
 
       # - name: deploy # 自动发布
       #   run: |
-      #     ssh root@125.65.79.116 "
+      #     ssh root@125.124.59.115 "
+      #       # 注意：服务器已经 git clone 代码到 /root/myblog/imooc-320-server 目录
+
       #       cd /root/myblog/imooc-320-server;
       #       git checkout . ;
       #       git checkout main;
-      #       git pull origin main;
-      #     "
-      
-      - name: delete id_rsa # 删除id_rsa
-        run: rm -rf ~/.ssh/id_rsa
+      #       git pull origin main; # 重新下载最新的代码
 
+      #       # 重启服务
+      #       npm install;
+      #       npm run prd;
+      #     "
+
+      - name: delete id_rsa # 删除 id_rsa
+        run: rm -rf ~/.ssh/id_rsa
