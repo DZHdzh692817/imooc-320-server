@@ -17,6 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2 #第三方的action
 
+      - name: ssh is exist
+        run: mkdir -p ~/.ssh/
+
       - name: Set id_rsa Key
         run: echo "${{secrets.my_id_rsa}}" > ~/.ssh/id_rsa
 
