@@ -34,7 +34,6 @@ jobs:
       - name: Run ssh-keyscan
         run: |
           ssh-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
-        #  chmod 777 ~/.ssh/known_hosts
 
       - name: deploy # 自动发布
         run: |
