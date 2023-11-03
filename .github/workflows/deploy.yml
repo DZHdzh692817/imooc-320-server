@@ -32,12 +32,12 @@ jobs:
           chmod 777 ~/.ssh/known_hosts
       #ssh-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
 
-      # - name: connect to server
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: 125.65.79.116
-      #     username: root
-      #     password: ${{ secrets.SERVER_PASSWORD }}
+      - name: connect to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: 125.65.79.116
+          username: root
+          password: Bi69q2Qn
       
       # - name: Run ssh-keyscan
       #   run: |
