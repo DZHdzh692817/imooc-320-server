@@ -18,11 +18,11 @@ jobs:
       - uses: actions/checkout@v2 #第三方的action
 
       - name: Set id_rsa Key
-        run: echo "${{secrets.MY_ID_RSA}}" > ~/.ssh/id_rsa
+        run: echo "${{secrets.my_id_rsa}}" > ~/.ssh/id_rsa
 
       - name: Set Permissions for id_rsa
         run: chmod 600 ~/.ssh/id_rsa
-        
+
       - name: Add remote host key to known_hosts
         run: |
           touch ~/.ssh/known_hosts
