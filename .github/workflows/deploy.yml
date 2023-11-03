@@ -24,20 +24,18 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan 8.134.219.94 >> ~/.ssh/known_hosts
 
-      # - name: deploy # 自动发布
-      #   run: |
-      #     ssh root@125.124.59.115 "
-      #       # 注意：服务器已经 git clone 代码到 /root/myblog/imooc-320-server 目录
-
-      #       cd /root/myblog/imooc-320-server;
-      #       git checkout . ;
-      #       git checkout main;
-      #       git pull origin main; # 重新下载最新的代码
-
-      #       # 重启服务
-      #       npm install;
-      #       npm run prd;
-      #     "
+      # 注意：服务器已经 git clone 代码到 /root/myblog/imooc-320-server 目录
+      - name: deploy # 自动发布
+        run: |
+          ssh root@8.134.219.94 "
+            cd /root/myblog/imooc-320-server;
+            git checkout . ;
+            git checkout main;
+            git pull origin main; # 重新下载最新的代码
+          "
+      # 重启服务
+      #      npm install;
+      #      npm run prd;
 
       - name: delete id_rsa # 删除 id_rsa
         run: rm -rf ~/.ssh/id_rsa
