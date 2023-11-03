@@ -26,11 +26,10 @@ jobs:
       - name: Set Permissions for id_rsa
         run: chmod 600 ~/.ssh/id_rsa
 
-      - name: Add remote host key to known_hosts
+      - name: set known_hosts
         run: |
           touch ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
-          ssh-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
       
       # - name: set id_rsa # 设置 id_rsa
       #   run: |
@@ -48,14 +47,16 @@ jobs:
       # npm run prd; 最后启动服务
       # npm install;
       # npm run prd;
-      - name: deploy # 自动发布
-        run: |
-          ssh root@125.65.79.116 "
-            cd /root/myblog/imooc-320-server;
-            git checkout . ;
-            git checkout main;
-            git pull origin main;
-          "
+
+      # - name: deploy # 自动发布
+      #   run: |
+      #     ssh root@125.65.79.116 "
+      #       cd /root/myblog/imooc-320-server;
+      #       git checkout . ;
+      #       git checkout main;
+      #       git pull origin main;
+      #     "
+      
       - name: delete id_rsa # 删除id_rsa
         run: rm -rf ~/.ssh/id_rsa
 
