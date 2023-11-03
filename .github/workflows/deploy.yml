@@ -31,12 +31,12 @@ jobs:
           touch ~/.ssh/known_hosts
           chmod 777 ~/.ssh/known_hosts
 
-      # - name: connect to server
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: 125.65.79.116
-      #     username: root
-      #     password: 
+      - name: connect to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: 125.65.79.116
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
       
       # - name: Run ssh-keyscan
       #   run: |
