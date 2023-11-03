@@ -33,12 +33,12 @@ jobs:
       
       - name: Run ssh-keyscan
         run: |
-          ssh-keyscan 8.134.219.94 >> ~/.ssh/known_hosts
+          ssh-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
         #  chmod 777 ~/.ssh/known_hosts
 
       - name: deploy # 自动发布
         run: |
-          ssh root@8.134.219.94 "
+          ssh root@125.65.79.116 "
             cd /root/myblog/imooc-320-server;
             git checkout . ;
             git checkout main;
