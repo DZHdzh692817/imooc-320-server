@@ -31,16 +31,16 @@ jobs:
           touch ~/.ssh/known_hosts
           chmod 777 ~/.ssh/known_hosts
 
-      - name: connect to server
-        uses: appleboy/ssh-action@master
-        with:
-          host: 125.65.79.116
-          username: ${{ secrets.SERVER_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
+      # - name: connect to server
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: 125.65.79.116
+      #     username: root
+      #     password: ${{ secrets.SERVER_PASSWORD }}
       
-      # - name: Run ssh-keyscan
-      #   run: |
-      #     ssh-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
+      - name: Run ssh-keyscan
+        run: |
+          ssh-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
         #chmod 600 ~/.ssh/known_hosts
 
       # 注意：服务器已经 git clone 代码到 /root/myblog/imooc-320-server目录中
