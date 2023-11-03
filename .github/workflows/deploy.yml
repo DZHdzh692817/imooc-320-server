@@ -42,7 +42,7 @@ jobs:
             cd /root/myblog/imooc-320-server;
             git checkout . ;
             git checkout main;
-            git pull origin main
+            git pull origin main;
           "
       
       - name: delete id_rsa # 删除id_rsa
