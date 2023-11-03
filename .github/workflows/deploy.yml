@@ -16,15 +16,27 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2 #第三方的action
-      
-      - name: set id_rsa # 设置 id_rsa
+
+      - name: Set id_rsa Key
+        run: echo "${{secrets.MY_ID_RSA}}" > ~/.ssh/id_rsa
+
+      - name: Set Permissions for id_rsa
+        run: chmod 600 ~/.ssh/id_rsa
+        
+      - name: Add remote host key to known_hosts
         run: |
-          mkdir -p ~/.ssh/
-          echo "${{secrets.MY_ID_RSA}}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
           touch ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
           ssh-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
+      
+      # - name: set id_rsa # 设置 id_rsa
+      #   run: |
+      #     mkdir -p ~/.ssh/
+      #     echo "${{secrets.MY_ID_RSA}}" > ~/.ssh/id_rsa
+      #     chmod 600 ~/.ssh/id_rsa
+      #     touch ~/.ssh/known_hosts
+      #     chmod 600 ~/.ssh/known_hosts
+      #     ssh-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
 
       # 注意：服务器已经 git clone 代码到 /root/myblog/imooc-320-server目录中
       # git checkout . ;意思是万一有什么修改，就撤销，不然影响拉代码
