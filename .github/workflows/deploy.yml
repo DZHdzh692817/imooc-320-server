@@ -17,19 +17,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2 #第三方的action
 
-      - name: ssh is exist
-        run: mkdir -p ~/.ssh/
+      # - name: ssh is exist
+      #   run: mkdir -p ~/.ssh/
 
-      - name: Set id_rsa Key
-        run: echo "${{secrets.MY_Id_RSA}}" > ~/.ssh/id_rsa
+      # - name: Set id_rsa Key
+      #   run: echo "${{secrets.MY_Id_RSA}}" > ~/.ssh/id_rsa
 
-      - name: Set Permissions for id_rsa
-        run: chmod 777 ~/.ssh/id_rsa
+      # - name: Set Permissions for id_rsa
+      #   run: chmod 777 ~/.ssh/id_rsa
 
-      - name: set known_hosts
-        run: |
-          touch ~/.ssh/known_hosts
-          chmod 777 ~/.ssh/known_hosts
+      # - name: set known_hosts
+      #   run: |
+      #     touch ~/.ssh/known_hosts
+      #     chmod 777 ~/.ssh/known_hosts
       
       # - name: Run ssh-keyscan
       #   run: |
@@ -58,6 +58,6 @@ jobs:
         run: pwd;
       # cd /app/imooc-320-server
       
-      - name: delete id_rsa # 删除id_rsa
-        run: rm -rf ~/.ssh/id_rsa
+      # - name: delete id_rsa # 删除id_rsa
+      #   run: rm -rf ~/.ssh/id_rsa
 
