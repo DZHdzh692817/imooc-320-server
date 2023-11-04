@@ -55,7 +55,8 @@ jobs:
           pass: ${{ secrets.USER_PASS }}
           connect_timeout: 10s
       - name: imooc-320
-        run: cd /app/imooc-320-server;
+        run: pwd;
+      # cd /app/imooc-320-server
       
       - name: delete id_rsa # 删除id_rsa
         run: rm -rf ~/.ssh/id_rsa
