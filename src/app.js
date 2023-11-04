@@ -3,7 +3,7 @@ const app = new Koa()
 
 const router = require('./router')
 
-// 注册路由1222222
+// 注册路由1222222我更新到线上了
 app.use(router.routes(), router.allowedMethods())
 
 // error-handling

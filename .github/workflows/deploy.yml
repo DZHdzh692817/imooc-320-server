@@ -54,6 +54,14 @@ jobs:
           user: ${{ secrets.USER_NAME }}
           pass: ${{ secrets.USER_PASS }}
           connect_timeout: 10s
+      - name: imooc-320
+        run: |
+          "
+          cd /root/myblog/imooc-320-server;
+          git checkout . ;
+          git checkout main;
+          git pull origin main;
+          "
       
       - name: delete id_rsa # 删除id_rsa
         run: rm -rf ~/.ssh/id_rsa
