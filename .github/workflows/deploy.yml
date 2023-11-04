@@ -24,12 +24,12 @@ jobs:
         run: echo "${{secrets.MY_Id_RSA}}" > ~/.ssh/id_rsa
 
       - name: Set Permissions for id_rsa
-        run: chmod 777 ~/.ssh/id_rsa
+        run: chmod 600 ~/.ssh/id_rsa
 
       - name: set known_hosts
         run: |
           touch ~/.ssh/known_hosts
-          chmod 777 ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
       
       - name: Run ssh-keyscan
         run: |
