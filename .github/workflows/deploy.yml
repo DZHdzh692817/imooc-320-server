@@ -38,10 +38,10 @@ jobs:
       - name: deploy # 自动发布
         run: |
           ssh root@125.65.79.116 "
-          cd /app/imooc-320-server;
-          git checkout . ;
-          git checkout main;
-          git pull origin main;
+            cd /app/imooc-320-server;
+            git checkout . ;
+            git checkout main;
+            git pull origin main;
         "
       # - name: deploy
       #   uses: cross-the-world/scp-pipeline@master
