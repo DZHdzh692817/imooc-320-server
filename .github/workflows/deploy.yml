@@ -58,7 +58,7 @@ jobs:
             pwd;
             cd;
             pwd;
-            cd /home/runner/app/imooc-320-server;
+            cd /app/imooc-320-server;
             git checkout . ;
             git checkout main;
             git pull origin main;
