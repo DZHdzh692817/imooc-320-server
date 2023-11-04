@@ -58,10 +58,10 @@ jobs:
             pwd;
             cd;
             pwd;
-          # cd /app/imooc-320-server;
-          # git checkout . ;
-          # git checkout main;
-          # git pull origin main;
+            cd /home/runner/app/imooc-320-server;
+            git checkout . ;
+            git checkout main;
+            git pull origin main;
       
       - name: delete id_rsa # 删除id_rsa
         run: rm -rf ~/.ssh/id_rsa
