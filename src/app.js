@@ -3,7 +3,7 @@ const app = new Koa()
 
 const router = require('./router')
 
-// 注册路由
+// 注册路由1222222
 app.use(router.routes(), router.allowedMethods())
 
 // error-handling
