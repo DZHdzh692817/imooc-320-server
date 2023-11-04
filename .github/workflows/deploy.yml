@@ -35,33 +35,34 @@ jobs:
         run: |
           ssh-keyscan 125.65.79.116 >> ~/.ssh/known_hosts
 
-      # - name: deploy # 自动发布
+      - name: deploy # 自动发布
+        run: |
+          ssh root@125.65.79.116 
+        # "
+        #   cd /root/myblog/imooc-320-server;
+        #   git checkout . ;
+        #   git checkout main;
+        #   git pull origin main;
+        # "
+      # - name: deploy
+      #   uses: cross-the-world/scp-pipeline@master
+      #   env:
+      #     WELCOME: "ssh scp ssh pipelines"
+      #     LASTSSH: "Doing something after copying"
+      #   with:
+      #     host: ${{ secrets.USER_HOST }}
+      #     user: ${{ secrets.USER_NAME }}
+      #     pass: ${{ secrets.USER_PASS }}
+      #     connect_timeout: 10s
+      # - name: imooc-320
       #   run: |
-      #     ssh root@125.65.79.116 "
-      #       cd /root/myblog/imooc-320-server;
+      #       pwd;
+      #       cd;
+      #       pwd;
+      #       cd /app/imooc-320-server;
       #       git checkout . ;
       #       git checkout main;
       #       git pull origin main;
-      #     "
-      - name: deploy
-        uses: cross-the-world/scp-pipeline@master
-        env:
-          WELCOME: "ssh scp ssh pipelines"
-          LASTSSH: "Doing something after copying"
-        with:
-          host: ${{ secrets.USER_HOST }}
-          user: ${{ secrets.USER_NAME }}
-          pass: ${{ secrets.USER_PASS }}
-          connect_timeout: 10s
-      - name: imooc-320
-        run: |
-            pwd;
-            cd;
-            pwd;
-            cd /app/imooc-320-server;
-            git checkout . ;
-            git checkout main;
-            git pull origin main;
       
       - name: delete id_rsa # 删除id_rsa
         run: rm -rf ~/.ssh/id_rsa
