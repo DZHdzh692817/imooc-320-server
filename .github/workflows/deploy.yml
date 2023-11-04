@@ -55,6 +55,8 @@ jobs:
           connect_timeout: 10s
       - name: imooc-320
         run: |
+            pwd;
+            touch mytest.txt;
             cd /app/imooc-320-server;
             git checkout . ;
             git checkout main;
