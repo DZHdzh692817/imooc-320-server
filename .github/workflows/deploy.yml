@@ -10,12 +10,13 @@ on:
       - 'bin/*'
       - 'package.json'
 
+# runs-on字段表示运行所需的虚拟机环境
 jobs:
   deploy:
     runs-on: ubuntu-latest 
 
     steps:
-      - uses: actions/checkout@v2 #第三方的action
+      - uses: actions/checkout@v2 #第三方的action，checkout指的是拉取本仓库代码
 
       - name: ssh is exist
         run: mkdir -p ~/.ssh/
